@@ -16,11 +16,6 @@ module.exports = class User extends Sequelize.Model {
         type: Sequelize.STRING(100),
         allowNull: true,
       },
-      manager: {    //담당자
-        type: Sequelize.STRING(30),
-        allowNull: true,
-        defaultValue: 'unknown',
-      },
       provider: {   //정보제공처
         type: Sequelize.STRING(10),
         allowNull: false,
@@ -43,6 +38,7 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
+    db.User.belongsTo(db.Admin,{foreignKey:'manager',targetKey:'Kname'});
     db.User.hasMany(db.Upload);
   }
 };

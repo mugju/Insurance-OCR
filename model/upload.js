@@ -24,7 +24,7 @@ module.exports = class Upload extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Post.belongsTo(db.User);
-    db.Post.belongsToMany(db.Tag, { through: 'UploadTag' });
+    db.Upload.belongsTo(db.User);
+    db.Upload.belongsToMany(db.Tag, { through: 'UploadTag' });
   }
 };
