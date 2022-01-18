@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>
+        <%= title %>
+    </title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <!-- <%- include('./part/header') %> -->
+    <!-- Header-->
+    <div class="join-form">
+        <form id="join-form" action="/auth/join" method="post">
+            <div class="input-group">
+                <label for="join-email">이메일</label>
+                <input id="join-email" type="email" name="email">
+            </div>
+            <div class="input-group">
+                <label for="join-kname">실명</label>
+                <input id="join-kname" type="text" name="Kname">
+            </div>
+            <div class="input-group">
+                <label for="join-password">비밀번호</label>
+                <input id="join-password" type="password" name="password">
+            </div>
+            <button id="join-btn" type="submit" class="btn">회원가입</button>
+        </form>
+    </div>
+    <!-- Footer-->
+    <%- include('./part/footer') %>
+
+    <script>
+        window.onload = () => {
+          if (new URL(location.href).searchParams.get('error')) {
+            alert('이미 존재하는 이메일입니다.');
+          }
+        };
+      </script>
+</body>

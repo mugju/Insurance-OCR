@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const ejs = require('ejs');
 
-const dotenv = require('dorenv');
+const dotenv = require('dotenv');
 const path = require('path');
 
 dotenv.config();
@@ -17,13 +17,30 @@ const pageRouter = require('./routes/page'); //서류 검색
 const authRouter = require("./routes/auth"); //인증 및 로그인 관련.
 const uploadRouter = require("./routes/upload"); //서류 업로드 관련
 
-
 //라우터 선언끝
+
+
 
 const app = express();
 app.set('port', process.env.PORT || 8085); //8085포트 사용예정임.
 app.set('views', __dirname + '/views'); //ejs 쓸 예정.
 app.set('view engine', 'ejs');
+
+
+const {sequelize} = require("./model");
+//sequelize
+sequelize.sync({force:false})
+    .then(()=> {
+        console.log('database연결')
+    })
+    .catch((err)=>{
+        console.error(err);
+    });
+
+
+const passport = require('passport');
+const passportConfig = require("./passport");
+passportConfig();
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,'public'))); //정적파일경로 public폴더내에 정리 할 것.
@@ -44,6 +61,13 @@ app.use(session({
         secure:false, //http 
     },
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/',pageRouter);
+app.use('/auth',authRouter);
+app.use('/upload',uploadRouter);
 
 
 

@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+#개인 설정
+config/

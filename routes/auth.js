@@ -1,13 +1,13 @@
 const express = require("express");
 const passport = require("passport");
 const bcrypt = require("bcrypt");
-const{isLoggedIn, isNotLoggedIn} = require("./middlewares");
-const User = require("../models/user");
+const{isLoggedIn, isNotLoggedIn} = require("./loginCheck");
+const User = require("../model/user");
 
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async (req,res,next)=>{
-    const {email,nick,password} = req.body;
+    const {email,Kname,password} = req.body;
     try{
         const exUser = await User.findOne({where: { email } });
         if(exUser){
@@ -16,7 +16,7 @@ router.post('/join', isNotLoggedIn, async (req,res,next)=>{
         const hash = await bcrypt.hash(password,12);
         await User.create({
             email,
-            nick,
+            Kname,
             password: hash,
         });
         return res.redirect('/');

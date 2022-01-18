@@ -4,7 +4,7 @@
   "description": "보험서류등 텍스트가 주인 사진의 자동 텍스트 추출기",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -27,9 +27,13 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
     "mysql2": "^2.3.3",
+    "node-tesseract-ocr": "^2.2.1",
     "passport": "^0.5.2",
+    "passport-kakao": "^1.0.1",
     "passport-local": "^1.0.0",
+    "passport-naver": "^1.0.6",
     "sequelize": "^6.13.0"
   },
   "devDependencies": {

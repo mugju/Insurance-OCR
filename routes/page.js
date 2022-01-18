@@ -2,7 +2,13 @@ const express = require('express');
 
 
 const {isLoggedIn, isNotLoggedIn} = require("./loginCheck");
+const {Upload, User, Admin, Tag} = require('../model');
 const router = express.Router();
+
+router.use((req,res,next)=>{
+    res.locals.user = req.user;
+    next();
+});
 
 //관리자 계정당 배정된 고객수 count할것.
 
@@ -19,16 +25,17 @@ router.get('/join', isNotLoggedIn, (req,res)=>{
 //지금까지 올린 자료 조회. 수정요망.
 router.get('/', async (req, res, next)=>{
     try{
-        const posts = await Post.findAll({
-            include : {
-                model : User,
-                attributes : ['id',nick],
-            },
-            order : [['createdAt', 'DESC']],
-        });
-        res.render('main', {
-            title : scoreloader,
-            twits : posts,
+        // const contents = await Upload.findAll({
+        //     include : {
+        //         model : User,
+        //         // attributes : ['id',Kname],
+        //         attributes : 'id',
+        //     },
+        //     order : [['createdAt', 'DESC']],
+        // });
+        res.render('index', {
+            title : 'vmfhsxmdpsem rotlfdj',
+            // sheets : contents, //올란 서류
 
         });
     }catch (error) {

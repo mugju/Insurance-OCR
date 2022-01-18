@@ -7,10 +7,12 @@ module.exports = class Admin extends Sequelize.Model {
         type: Sequelize.STRING(40),
         allowNull: true,
         unique: true,
+        
       },
       Kname: {  //한국이름
         type: Sequelize.STRING(15),
         allowNull: false,
+        primaryKey : true,
       },
       password: {
         type: Sequelize.STRING(100),
