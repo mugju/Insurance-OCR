@@ -1,0 +1,38 @@
+{
+  "name": "insurance-ocr",
+  "version": "1.0.0",
+  "description": "보험서류등 텍스트가 주인 사진의 자동 텍스트 추출기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mugju/Insurance-OCR.git"
+  },
+  "keywords": [
+    "OCR"
+  ],
+  "author": "DongD",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mugju/Insurance-OCR/issues"
+  },
+  "homepage": "https://github.com/mugju/Insurance-OCR#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^14.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
