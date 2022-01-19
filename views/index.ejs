@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title><%= title %></title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <%- include('./part/header') %>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>
+        <%= title %>
+    </title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <%- include('./part/header') %>
         <!-- Header-->
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">어서오세요 DD손해보험 서류접수창구입니다.</h1>
                 <p class="lead">가상의 페이지입니다. 절대 실제가아니니 기능테스트용도로만 사용해주세요.</p>
-                <%if(user){%>  
+                <%if(user){%>
                     <a class="btn btn-lg btn-light" href="#services">서류내러가기</a>
                     <%}else{%>
                         <a class="btn btn-lg btn-light" href="#services">로그인하기</a>
                         <% }%>
-                <!-- 세션이 없으면 로그인 -->
-                
-                <!-- 세션이 있으면 서류내러가기 -->
+                            <!-- 세션이 없으면 로그인 -->
+
+                            <!-- 세션이 있으면 서류내러가기 -->
             </div>
         </header>
         <!-- About section-->
@@ -34,7 +38,8 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>About this page</h2>
-                        <p class="lead">이 페이지는 고객들이 자신의 보험담당자를 선택하고, 그 담당자에게 사진으로된 서류를 첨부하면 자동으로 담당자에게 OCR기능을 통해서 사진속 텍스트를 추출해주는 서비스입니다.</p>
+                        <p class="lead">이 페이지는 고객들이 자신의 보험담당자를 선택하고, 그 담당자에게 사진으로된 서류를 첨부하면 자동으로 담당자에게 OCR기능을 통해서 사진속
+                            텍스트를 추출해주는 서비스입니다.</p>
                         <ul>
                             <li>사용자는 간단한 가입과정을 통해 자신의 담당자에게 바로 서류를 보내고 그에대한 결과 처리상태를 알 수 있습니다.</li>
                             <li>담당자는 사진의 텍스트 분석을 위해 힘쓸필요가 없습니다. OCR 기능을 이용해 텍스트를 추출해보세요.</li>
@@ -49,38 +54,89 @@
         <!-- login -->
         <section class="bg-light" id="services">
             <div class="container px-4">
-                <%if(user){%>  
-                    <a class="btn btn-lg btn-light" href="#services">서류내러가기</a>
+                <%if(user){%>
+                    <div class='upload-box shadow-sm'>
+                        <form id="twit-form" action="/upsheet" method="post" enctype="multipart/form-data">
+
+                            <div class="img-preview">
+                                <img id="img-preview" src="" style="display: none;" width="250" alt="미리보기">
+                                <input id="img-url" type="hidden" name="url">
+                            </div>
+                            <div>
+                                <label id="img-label" for="img">서류사진 업로드</label>
+                                <input id="img" type="file" accept="image/*">
+                            </div>
+                            <div class="login-Box">
+                                <textarea class="text-field" placeholder="#이름 #병명 #발병일시  와 같이 적어주세요." id="content"
+                                    name="content" maxlength="140"></textarea>
+                            </div>
+                            <button id="twit-btn" type="submit" class="submit-btn">서류 올리기</button>
+                        </form>
+                    </div>
                     <%}else{%>
                         <form id="login-form" action="/auth/login" method="post">
                             <input type="email" name="email" class="text-field" placeholder="아이디">
                             <input type="password" name="password" class="text-field" placeholder="비밀번호">
                             <input type="submit" value="로그인" class="submit-btn">
-    
-                            
+
+
                             <a id="login-Btn" href="/auth/kakao" class="submit-btn">카카오톡</a>
-    
+
                             <a id="login-Btn" href="/auth/naver" class="submit-btn">네이버</a>
                         </form>
                         <% }%>
             </div>
         </section>
+
         <!-- Contact section-->
         <section id="contact">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Contact me</h2>
-                        <p class="lead">저는 취업에 굶주려있어요 언제든 제 사이트로 오셔서 email로 컨택해주세요. 도메인 주소는 http://nanssogong.com 입니다</p>
+                        <p class="lead">저는 취업에 굶주려있어요 언제든 제 사이트로 오셔서 email로 컨택해주세요. 도메인 주소는 http://nanssogong.com 입니다
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Footer-->
         <%- include('./part/footer') %>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+            <!-- Bootstrap core JS-->
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <%if(user){%>
+                <script>
+                    if (document.getElementById('img')) {
+                        document.getElementById('img').addEventListener('change', function (e) {
+                            const formData = new FormData();
+                            console.log(this, this.files);
+                            formData.append('img', this.files[0]);
+                            console.log('폼데이터 : ',formData);
+                            console.log('이부분 이미지', this.files[0]);
+                            console.log('폼데이터', formData);
+                            axios.post('/upsheet/img', formData)
+                                .then((res) => {
+                                    document.getElementById('img-url').value = res.data.url;
+                                    // 이부분 주목
+                                    document.getElementById('img-preview').src = res.data.url;
+                                    console.log('url', res.data.url);
+                                    document.getElementById('img-preview').style.display = 'inline';
+                                    // document.getElementById('input-group').value = res.data.url;
+                                })
+                                .catch((err) => {
+                                    console.error(err);
+                                });
+                        });
+                    }
+                </script>
+
+            <% }%>
+
+
+
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                    <!-- Core theme JS-->
+                    <script src="js/scripts.js"></script>
+</body>
+
 </html>

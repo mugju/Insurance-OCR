@@ -15,7 +15,7 @@ dotenv.config();
 //기본라우터
 const pageRouter = require('./routes/page'); //서류 검색
 const authRouter = require("./routes/auth"); //인증 및 로그인 관련.
-const uploadRouter = require("./routes/upload"); //서류 업로드 관련
+const upsheetRouter = require("./routes/upsheet"); //서류 업로드 관련
 
 //라우터 선언끝
 
@@ -67,7 +67,7 @@ app.use(passport.session());
 
 app.use('/',pageRouter);
 app.use('/auth',authRouter);
-app.use('/upload',uploadRouter);
+app.use('/upsheet',upsheetRouter);
 
 
 

@@ -23,10 +23,10 @@ let eng = '';
 
 
 try { //업로드 폴더가 있나요..?
-    fs.readdirSync('uploads');
+    fs.readdirSync('uploadsss');
 
 } catch (error) {
-    fs.mkdirSync('uploads');
+    fs.mkdirSync('uploadsss');
 }
 
 const upload = multer({
